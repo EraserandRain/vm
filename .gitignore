@@ -1,4 +1,3 @@
-/ubuntu/*
-!/ubuntu/Vagrantfile
+/ubuntu/.vagrant
 /share/box/*
 !/share/box/README.md
