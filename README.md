@@ -1,3 +1,6 @@
+## box 下载
+[Vagrant box 下载](https://eraserandrain.github.io/blogs/Ops/vagrant.html#box-%E4%B8%8B%E8%BD%BD)
+
 ## Vagrantfile 配置
 Vagrantfile 配置，详见 [Vagrant 配置操作](https://www.notion.so/63706f924ceb46768c2170a3a73e382e?v=2094293253fb418baf7213f4cce3f337)。
 
