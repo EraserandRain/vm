@@ -1,7 +1,7 @@
 host_list = [
   {
-    :name => "generic/centos7",
-    :box => "generic_centos7",
+    :name => "centos",
+    :box => "centos",
     :hostname => "centos-vm",
     :ipaddr => "192.168.2.82",
     :bridge => "enp8s0"
