@@ -32,5 +32,6 @@ sed -e 's|^metalink=|#metalink=|g' \
 # install packages
 yum makecache
 yum -y install curl wget make inxi tree vim ntp
+timedatectl set-timezone 'Asia/Shanghai'
 ntpdate ntp.aliyun.com
 exit 0
