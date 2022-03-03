@@ -31,5 +31,6 @@ sed -e 's|^metalink=|#metalink=|g' \
         
 # install packages
 yum makecache
-yum -y install curl wget make inxi tree 
+yum -y install curl wget make inxi tree vim ntp
+ntpdate ntp.aliyun.com
 exit 0
