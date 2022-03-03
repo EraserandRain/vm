@@ -32,6 +32,9 @@ sed -e 's|^metalink=|#metalink=|g' \
 # install packages
 yum makecache
 yum -y install curl wget make inxi tree vim ntp
-timedatectl set-timezone 'Asia/Shanghai'
+# set time zone
+mv /etc/localtime /etc/localtime.bak
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ntpdate ntp.aliyun.com
+
 exit 0
