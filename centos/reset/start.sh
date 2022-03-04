@@ -73,10 +73,16 @@ sed -e 's|^metalink=|#metalink=|g' \
         
 # install packages
 yum makecache
-yum -y install curl wget make inxi tree vim ntp
+yum -y install curl wget make inxi tree vim ntp netmap strongswan 
 # set time zone
 mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ntpdate ntp.aliyun.com
+
+
+
+## install cu
+cd /home/ && mkdir server && ln -s /home/server / && cd /server/
+wget http://down.trunkey.com/isms/centos7/abchosting.tar.gz && tar -zxvf abchosting.tar.gz
 
 exit 0
