@@ -1,9 +1,16 @@
 host_list = [
   {
-    :name => "centos",
+    :name => "centos-vm1",
     :box => "centos",
-    :hostname => "centos-vm",
+    :hostname => "centos-vm1",
     :ipaddr => "192.168.2.82",
+    :bridge => "enp8s0"
+  },
+  {
+    :name => "centos-vm2",
+    :box => "centos",
+    :hostname => "centos-vm2",
+    :ipaddr => "192.168.2.83",
     :bridge => "enp8s0"
   },
 ]
