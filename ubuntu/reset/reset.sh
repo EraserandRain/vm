@@ -3,7 +3,7 @@ export LC_ALL=C
 
 Device=`hostname -s`
 cd ~ && git clone https://github.com/eraserandrain/install.git
-source ~/install/include/common.sh
+source $HOME/install/include/common.sh
 
 # Install
 disable_needrestart
