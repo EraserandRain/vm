@@ -1,0 +1,18 @@
+host_list = [
+  {
+    :name => "TestNode",
+    :box => "generic/ubuntu2204",
+    :hostname => "TestNode",
+  } 
+]
+
+Vagrant.configure("2") do |config|
+  host_list.each do |item|
+    config.vm.define item[:name]  do |host|
+      host.vm.box=item[:box]
+      host.vm.hostname=item[:hostname]
+      host.vm.provision "shell", path: "reset/reset.sh"
+      host.vm.network "public_network"
+    end
+  end
+end
