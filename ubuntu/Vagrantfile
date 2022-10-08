@@ -1,6 +1,6 @@
 host_list = [
   {
-    :name => "host1",
+    :name => "node1",
     :box => "generic/ubuntu2204",
     :hostname => "host1",
     :ipaddr => "172.20.120.1"
