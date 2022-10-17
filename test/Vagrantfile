@@ -3,6 +3,7 @@ host_list = [
     :name => "TestNode",
     :box => "generic/ubuntu2204",
     :hostname => "TestNode",
+    :ipaddr => "172.27.10.110"
   } 
 ]
 
@@ -11,8 +12,8 @@ Vagrant.configure("2") do |config|
     config.vm.define item[:name]  do |host|
       host.vm.box=item[:box]
       host.vm.hostname=item[:hostname]
-      host.vm.provision "shell", privileged: false, path: "../ubuntu/script/reset.sh"
-      host.vm.network "public_network"
+      host.vm.provision:shell, privileged:false, path:"../ubuntu/script/reset.sh"
+      host.vm.network:public_network, ip:item[:ipaddr], bridge:"Hyper-V Virtual Ethernet Adapter #2"
     end
   end
 end

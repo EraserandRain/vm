@@ -1,27 +1,33 @@
 host_list = [
   {
-    :name => "node1",
+    :name => "host1",
     :box => "generic/ubuntu2204",
     :hostname => "host1",
-    :ipaddr => "172.20.120.1"
+    :ipaddr => "172.27.10.101"
   },
   {
     :name => "host2",
     :box => "generic/ubuntu2204",
     :hostname => "host2",
-    :ipaddr => "172.20.120.2"
+    :ipaddr => "172.27.10.102"
   },
   {
     :name => "host3",
     :box => "generic/ubuntu2204",
     :hostname => "host3",
-    :ipaddr => "172.20.120.3"
+    :ipaddr => "172.27.10.103"
   },
    {
     :name => "host4",
     :box => "generic/ubuntu2204",
     :hostname => "host4",
-    :ipaddr => "172.20.120.4"
+    :ipaddr => "172.27.10.104"
+  }, 
+  {
+    :name => "host5",
+    :box => "generic/ubuntu2204",
+    :hostname => "host5",
+    :ipaddr => "172.27.10.105"
   } 
 ]
 
@@ -30,8 +36,8 @@ Vagrant.configure("2") do |config|
     config.vm.define item[:name]  do |host|
       host.vm.box=item[:box]
       host.vm.hostname=item[:hostname]
-      host.vm.provision "shell", path: "reset/reset.sh"
-      host.vm.network "public_network", ip: item[:ipaddr]
+      host.vm.provision "shell", path: "script/reset.sh", privileged: false
+      host.vm.network "public_network", ip: item[:ipaddr], bridge:"Hyper-V Virtual Ethernet Adapter #2"
     end
   end
 end

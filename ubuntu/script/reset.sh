@@ -23,6 +23,7 @@ load_env \
 --compose \
 --nvm \
 --alias \
+--pyenv \
 --zsh $Device
 
 $HOME/install/zsh/update_local.sh -c
