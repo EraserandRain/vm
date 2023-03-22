@@ -2,29 +2,9 @@
 export LC_ALL=C
 
 Device=$(hostname -s)
-cd $HOME && git clone https://github.com/eraserandrain/install.git
-source $HOME/install/include/common.sh
+cd $HOME && git clone https://github.com/eraserandrain/env-manager.git
+cd $HOME/env-manager
 
 # Other Settings
-if_jammy_os disable_needrestart set_apt_mirror
-set_git_config
-
-
-# Install
-install_env \
---node \
---python \
---cpp \
---ubuntu_docker \
---zsh
-
-# Load
-load_env \
---compose \
---nvm \
---alias \
---pyenv \
---zsh $Device
-
-$HOME/install/zsh/update_local.sh -c
-source $HOME/.zshrc
+bash init.sh
+./update_local_zsh.sh -c
