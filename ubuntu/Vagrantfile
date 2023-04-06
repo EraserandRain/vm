@@ -1,44 +1,35 @@
 host_list = [
   {
+    :name => "master",
+    :hostname => "master",
+  },
+  {
     :name => "host1",
-    :box => "generic/ubuntu2204",
     :hostname => "host1",
-    # :ipaddr => "192.168.10.1"
   },
   {
     :name => "host2",
-    :box => "generic/ubuntu2204",
     :hostname => "host2",
-    # :ipaddr => "192.168.10.2"
   },
   {
     :name => "host3",
-    :box => "generic/ubuntu2204",
     :hostname => "host3",
-    # :ipaddr => "192.168.10.3"
   },
-   {
-    :name => "host4",
-    :box => "generic/ubuntu2204",
-    :hostname => "host4",
-    # :ipaddr => "192.168.10.4"
-  }, 
-  # {
-  #   :name => "host5",
-  #   :box => "generic/ubuntu2204",
-  #   :hostname => "host5",
-  #   :ipaddr => "192.168.10.105"
-  # } 
 ]
 
 Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu1804"
+  config.vm.provider "hyperv"
+  config.vm.provision "shell", path: "script/reset.sh", privileged: false
+  # config.vm.synced_folder ".", "/vagrant", disabled: true
+  # config.vm.provider "virtualbox" do |vb|
+  #   vb.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
+  #   vb.gui = true
+  # end
+  
   host_list.each do |item|
-    config.vm.define item[:name]  do |host|
-      host.vm.box=item[:box]
-      host.vm.hostname=item[:hostname]
-      host.vm.provision "shell", path: "script/reset.sh", privileged: false
-      # host.vm.network "public_network", ip: item[:ipaddr], bridge:"Hyper-V Virtual Ethernet Adapter #2"
+    config.vm.define item[:name] do |host|
+      host.vm.hostname = item[:hostname]
     end
   end
 end
-
