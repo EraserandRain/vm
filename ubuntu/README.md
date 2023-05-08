@@ -1,30 +1,28 @@
-# ChangeLog
-
-## 2023.04.23
-
-### 安装 Ansible
-Master 安装 Ansible
+# Quick Start for VMs
+---
+The Vagrantfile will quick start the Ubuntu VMs.
+## VM Info
+| VM Info        | Description  |
+| -------------- | ------------ |
+| Vgrant Version | 2.3.4        |
+| VM Linux       | Ubuntu 18.04 |
+| VM Provider    | hyperv       |
+## Installation
+Install Plugins
 ```bash
-pip3 install ansible
-ansible --version
+vagrant plugin install vagrant-hostmanager
 ```
 
-设置各节点 Host
+VM Proxy Plugin ( If needs )
 ```bash
-cat << EOF | sudo tee -a /etc/hosts
-172.23.197.229 master
-172.23.198.126 host1
-172.23.202.21 host2
-172.23.206.175 host3
-EOF
+vagrant plugin install vagrant-proxyconf
 ```
 
-### 配置主机互信
-Master 生成密钥对
-```bash
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
-```
-将其他节点的信息写入 Master 的 `~/.ssh/known_hosts` 文件
-```bash
-
-```
+## Description
+When Vm nodes Up, Master Node will install the following packages.
+| Package       | Description                               |
+| ------------- | ----------------------------------------- |
+| `pyenv`       | Manage python multiple versions of python |
+| `python`      | default version is 3.10.4                 |
+| `ansible` | Controller for manage nodes |
+| `env-manager` | Repo contains playbooks for Vm node management               |

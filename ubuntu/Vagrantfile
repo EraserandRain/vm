@@ -5,7 +5,7 @@ def pshcmd(cmd)
   `powershell.exe -encodedCommand #{encoded_cmd}`.chomp
 end
 
-vm_provider = "hyperv"
+vm_provider = 'hyperv'
 switch_name = pshcmd('Get-VMSwitch | Select-Object Name | findstr Default')
 switch_ip = pshcmd("(Get-NetIPAddress -InterfaceAlias \"vEthernet (#{switch_name})\" -AddressFamily IPV4).IPAddress")
 
@@ -55,6 +55,8 @@ Vagrant.configure('2') do |config|
           hv.maxmemory = item[:maxmem]
         end
       end
+
+      host.vm.provision 'shell', path: 'script/master.sh', privileged: false if host.vm.hostname == 'master'
     end
   end
 end
