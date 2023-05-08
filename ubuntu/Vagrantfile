@@ -43,6 +43,10 @@ Vagrant.configure('2') do |config|
   config.vm.box = 'generic/ubuntu1804'
   config.vm.provider "#{vm_provider}"
   config.vm.network 'public_network', bridge: "#{switch_name}"
+  config.vm.provision 'shell',
+                      run: 'once',
+                      path: 'script/init.sh',
+                      privileged: false
 
   host_list.each do |item|
     config.vm.define item[:name] do |host|
@@ -55,7 +59,12 @@ Vagrant.configure('2') do |config|
         end
       end
 
-      host.vm.provision 'shell', path: 'script/master.sh', privileged: false if host.vm.hostname == 'master'
+      if host.vm.hostname == 'master'
+        host.vm.provision 'shell',
+                          run: 'once',
+                          path: 'script/master.sh',
+                          privileged: false
+      end
     end
   end
 end
