@@ -43,7 +43,6 @@ Vagrant.configure('2') do |config|
   config.vm.box = 'generic/ubuntu1804'
   config.vm.provider "#{vm_provider}"
   config.vm.network 'public_network', bridge: "#{switch_name}"
-  config.vm.provision 'shell', path: 'script/reset.sh', privileged: false
 
   host_list.each do |item|
     config.vm.define item[:name] do |host|
