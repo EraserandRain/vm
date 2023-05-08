@@ -13,8 +13,8 @@ host_list = [
   {
     name: 'master',
     hostname: 'master',
-    mem: 6144,
-    maxmem: 6144
+    mem: 4096,
+    maxmem: 4096
   },
   {
     name: 'worker1',
