@@ -7,5 +7,5 @@
       "useBundler": true // enable reek via bundler
     }
   },
-  "ruby.format": "rubocop"
+  "ruby.format": "rubocop",
 }

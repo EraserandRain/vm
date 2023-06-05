@@ -11,17 +11,20 @@ switch_ip = pshcmd("(Get-NetIPAddress -InterfaceAlias \"vEthernet (#{switch_name
 
 host_list = [
   {
-    name: 'master',
-    hostname: 'master',
+    name: 'master1',
+    tags: 'master',
+    hostname: 'master1',
     mem: 4096,
     maxmem: 4096
   },
   {
     name: 'worker1',
+    tags: 'worker',
     hostname: 'worker1'
   },
   {
     name: 'worker2',
+    tags: 'worker',
     hostname: 'worker2'
   }
 ]
@@ -36,6 +39,7 @@ Vagrant.configure('2') do |config|
 
   if Vagrant.has_plugin?('vagrant-hostmanager')
     config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
     config.hostmanager.manage_guest = true
     config.hostmanager.ignore_private_ip = false
   end
@@ -59,7 +63,7 @@ Vagrant.configure('2') do |config|
         end
       end
 
-      if host.vm.hostname == 'master'
+      if item.key?(:tags) && item[:tags].include?('master')
         host.vm.provision 'shell',
                           run: 'once',
                           path: 'script/master.sh',
